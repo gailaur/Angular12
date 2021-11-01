@@ -21,6 +21,7 @@ const routes: Routes = [
   declarations: [
     HotelListComponent,
     HotelDetailComponent,
+    HotelEditComponent,
     StarRatingComponent,
     ReplaceComma,
 
