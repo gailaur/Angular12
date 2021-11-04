@@ -98,13 +98,13 @@ let k : [number, string] = null;
 k = [3,'toto']
 
 
-//énumération
+//énumération//
 enum Couleur {Rouge, Vert, Bleu }
 const ma_couleur = Couleur.Rouge + ' '+ Couleur.Bleu;
 console.log(ma_couleur);
 enum Taille {Petite = 3, Moyenne = 10, Grande};
 const ma_taille : Taille = Taille.Petite;
-console.log(ma_taille) //3
+console.log(ma_taille) //3333333333
 
 
 

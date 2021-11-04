@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 let l = function (x, y){
   return x+y ;
 }
-console.log(l(4, 8) +' '+ l('toto' , 'titi'));
+console.log(l(4, 8) +' '+ l('toto ' , 'titi'));
 
 let m = function (x: number, y : number){
   return x + y;
@@ -79,30 +79,66 @@ const identite2: {
 interface IHello{
   (name: string, age?: number): void
 }
-const sayHello: IHello = name =>{
-  console.log('Bonjour à toi, ${name}.');
+const sayHello: IHello = (name, age) =>{
+  console.log(`Bonjour à toi, ${name}, tu as ${age} ans.`);
 };
-sayHello("Alexis")
+sayHello("Alexis", 27);
 
 let value = 30;
 if(typeof value == "number") console.log("Value est un nombre!");
 
-function foo(x: string | number | boolean): boolean{
-  if (typeof x === "string"){
-    return true;
-  }else if(typeof x === "number"){
-    return false;
+// function foo(x: string | number | boolean): boolean{
+//   if (typeof x === "string"){
+//     return true;
+//   }else if(typeof x === "number"){
+//     return false;
+//   }
+//   return fail("x n'est ni un string ni un number");
+// }
+// foo(false);
+
+// function fail(message: string): never {
+//   throw new Error (message);
+// }
+
+//Fonction flechée
+
+let direAuRevoir = () => 'Au revoir';
+console.log(direAuRevoir());
+
+let somme = (x, y)  => x + y;
+console.log(somme(5, 8));
+
+let bonsoir = (firstname) => 'Bienvenu ' + firstname;
+console.log(bonsoir('Mathieu'));
+
+
+function Bye(){
+  console.log('Au REvoir');
+}
+
+Bye();
+
+function direBonjour(prenom){
+  console.log('Bonjour ' + prenom);
+}
+direBonjour('Nicolas');
+
+const prices = [4, 8, 10, 15, 20, 30];
+
+let plusGrandQue10 = prices.filter(p => p > 10);
+console.log(plusGrandQue10);
+
+// le mot this n'est pas disponible dans une fonction flechée/////////
+const utilisateur ={
+  prenon: 'Nicolas',
+  age: 50,
+
+  presentation: function(){
+    return`Bonjour, je m'appelle ${window.prenom} et j'ai ${this.age} ans.`;
   }
-  return fail("x n'est ni un string ni un number");
 }
-foo(false);
-
-function fail(message: string): never {
-  throw new Error (message);
-}
-
-
-
+console.log(utilisateur.presentation());
 
 
 
