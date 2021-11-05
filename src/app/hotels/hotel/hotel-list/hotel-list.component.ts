@@ -28,11 +28,9 @@ export class HotelListComponent implements OnInit {
          this.hotels = res;
          this.filteredHotels = this.hotels;
        }
-       error:err => this.errMsg = err
-
-
+     },  error=>{
+       this.errMsg = "not exist"
      });
-
     this._hotelFilter ='';
   }
 

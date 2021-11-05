@@ -135,96 +135,28 @@ const utilisateur ={
   age: 50,
 
   presentation: function(){
-    return`Bonjour, je m'appelle ${window.prenom} et j'ai ${this.age} ans.`;
+    return`Bonjour, je m'appelle ${this.prenom} et j'ai ${this.age} ans.`;
   }
 }
 console.log(utilisateur.presentation());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function Greeter(this: any, greeting: string){
-  this.greeting = greeting;
+class Car {
+  constructor(public position: number, protected speed: number) {}
+  move() {
+    this.position += this.speed;
+  }
 }
 
-Greeter.prototype.greet = function(){
-  return "Hello," + this.greeting;
+class SelfDrivingCar extends Car {
+  constructor(startAutoPilot: boolean) {
+    super(0, 42);
+    if (startAutoPilot) {
+      this.move();
+    }
+  }
 }
+let car = new SelfDrivingCar(true);
+console.log(car.position); // access the public property position
 
+//je suis là
 
-let greeter =  new Greeter("word");
-
-let button = document.createElement('button');
-button.textContent = "Say Hello";
-button.onclick = function(){
-  alert(greeter());
-}
