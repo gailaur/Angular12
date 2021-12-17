@@ -1,0 +1,74 @@
+<label>Enregistrement de la population</label> <br><br>
+
+<form novalidate (ngSubmit)="createForm()" [formGroup]="formGroup">
+  <div>Nom (s) : <input  type="text" formControlName="name" placeholder="Nom*"/> </div>
+  <div>Prénom (s) : <input  type="text" formControlName="firstname" placeholder="Prénom (s)*"/> </div>
+  <div>Age : <input  type="number" formControlName="age" placeholder="Age*"/> </div>
+  <div>Sexe:
+    <select formControlName="sex">
+      <option>Homme</option>
+      <option>Femme</option>
+    </select>
+  </div>
+  <input type="button" value="Enregistrer" (click)="getElecteurs()" >
+</form>
+
+
+<div style="margin-top: 40px">Tableau des Electeurs</div>
+<table>
+  <thead style="border: solid 2px black">
+  <tr >
+    <td style="border: solid 1px black; width: 250px">Nom(s) et Prénom (s)</td>
+    <td style="border: solid 1px black; width: 50px">Age</td>
+    <td style="border: solid 1px black; width: 60px">Sexe</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let objet of electeurs" style="border: solid 1px black">
+    <td>{{objet.name}} {{objet.firstname}}</td>
+    <td>{{objet.age}}</td>
+    <td>{{objet.sex}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div  style="margin-top: 40px">Tableau des Préelecteurs</div>
+<table>
+  <thead>
+  <tr>
+    <td style="border: solid 1px black; width: 250px">Nom(s) et Prénom (s)</td>
+    <td style="border: solid 1px black; width: 50px">Age</td>
+    <td style="border: solid 1px black; width: 60px">Sexe</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let objet of preelecteurs" style="border: solid 1px black">
+    <td>{{objet.name}} {{objet.firstname}}</td>
+    <td>{{objet.age}}</td>
+    <td>{{objet.sex}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div  style="margin-top: 40px">Tableau des Poste-electreurs</div>
+<table>
+  <thead>
+  <tr>
+    <td style="border: solid 1px black; width: 250px">Nom(s) et Prénom (s)</td>
+    <td style="border: solid 1px black; width: 50px">Age</td>
+    <td style="border: solid 1px black; width: 60px">Sexe</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let objet of postelecteurs" style="border: solid 1px black">
+    <td>{{objet.name}} {{objet.firstname}}</td>
+    <td>{{objet.age}}</td>
+    <td>{{objet.sex}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
