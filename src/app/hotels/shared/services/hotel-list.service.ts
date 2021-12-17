@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {IHotel} from "../models/hotel";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
+import {catchError, map, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +57,12 @@ export class HotelListService {
     );
   }
 
+  public getHotelById(id:number): Observable<IHotel>{
+    return this.getHotels().pipe(
+      map(hotels=>hotels.find(hotel=>hotel.hotelId==id))
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -71,5 +77,7 @@ export class HotelListService {
     return throwError(
       'Something bad happened; please try again later.');
   }
+
+
 
 }

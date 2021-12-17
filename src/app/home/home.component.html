@@ -1,1 +1,32 @@
-<p>home works!</p>
+Produit : <input type="text" [(ngModel)]="nomProduit"><br>
+Prix : <input type="number" [(ngModel)]="prix"><br>
+Quantité : <input type="number" [(ngModel)]="quantite"><br>
+
+<input type="button" value="Calculer"  (click)="market()">
+
+
+Produit : <input type="text"><br>
+Prix : <input type="number" [(ngModel)]="prix"><br>
+Quantité : <input type="number" [(ngModel)]="quantite"><br>
+
+<input type="button" value="Calculer"  (click)="market()">
+
+
+<table border="1">
+  <tr>
+    <td width="20%">Produit</td>
+    <td width="20%">Prix</td>
+    <td width="20%">Quantité</td>
+    <td width="20%">Total</td>
+  </tr>
+
+  <tr *ngFor="let objet of vente">
+    <td>{{ objet.nomProduit}}</td>
+    <td>{{ objet.prix}}</td>
+    <td>{{ objet.quantite}}</td>
+    <td>{{ objet.prix * objet.quantite  }}</td>
+  </tr>
+</table>
+
+
+

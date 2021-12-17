@@ -6,7 +6,7 @@ import {ReplaceComma} from "../shared/pipes/replace-comma.pipe";
 import {CommonModule} from "@angular/common";
 import {RouterModule, Routes} from "@angular/router";
 import {HotelDetailGuard} from "../shared/guards/hotel-detail.guard";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {HotelEditComponent} from "./hotel-edit/hotel-edit.component";
 
@@ -29,6 +29,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatIconModule,
   ]

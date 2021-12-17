@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch:'full'},
   {path:'home', component:HomeComponent},
   {path: 'hotels', loadChildren: () => import('./hotels/hotel/hotel.module').then(m => m.HotelModule)},
+  {path: 'elector', loadChildren: () => import('./elector/elector.module').then(m => m.ElectorModule)},
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 

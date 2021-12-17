@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
+import {HotelListService} from "../../shared/services/hotel-list.service";
+import {IHotel} from "../../shared/models/hotel";
 
 @Component({
   selector: 'app-hotel-edit',
@@ -6,10 +10,98 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hotel-edit.component.scss']
 })
 export class HotelEditComponent implements OnInit {
+   hotelForm: FormGroup;
 
-  constructor() { }
+
+  constructor(
+    private fb: FormBuilder,
+    private route : ActivatedRoute,
+    private hotelService: HotelListService
+  ) { }
 
   ngOnInit(): void {
+    this.formulaire
+    console.log(this.formulaire());
+
+    this.route.paramMap.subscribe(params=>{
+      const id = +params.get('id');
+      console.log(id);
+    });
+
+    //this.getSelectedHotel('id');
+  }
+  //ce formulaire ne depend pas du model jusque là
+  formulaire(){
+    this.hotelForm = this.fb.group({
+      hotelName : ['', Validators.required],
+      description: ['', Validators.required],
+      price: [''],
+      starRating: ['']
+    });
+  }
+
+  saveHotel():void {
+    console.log(this.hotelForm.value);
+  }
+
+  getSelectedHotel(id:number):void{
+    this.hotelService.getHotelById(id).subscribe(
+      (hotel:IHotel)=>{
+        console.log(hotel);
+      }
+    )
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function afficheNom(nom: string, prenom?: string): void {
+  let texte = nom; //on a definie la variable
+  if (prenom) {
+    texte += ' ' + prenom; // => (nouveauTexte = ancienTexte + prenom ) / a = +25 => a = a +25
+  }
+  alert(texte);
+}
+//afficheNom('Durand');
+console.log('Dupont', 'Marcel');
+
+function ajouter(base, ...elements) {
+  for (var i = 0; i < elements.length; i++) {
+    base += elements[i];
+  }
+  return base;
+}
+var resultat = ajouter(10, 1, 2); // =>13
+console.log(resultat);
+
+function compresse(value: string, mode: string | number) {
+  if (typeof mode === 'string') {
+    return value.substr(0, mode.length); // il va limiter le nombre de carractère (de value) en fonction de la taille de mode
+  }
+  else if (typeof mode === 'number') {
+    return value.substr(0, mode); //il va limiter le nombre de carractère (de value) en fonction de la valeur de mode
+  }
+  return value;
+}
+console.log(compresse('trucacompresser', 6)); //
+console.log(compresse('trucacompresser', 'comprimer'));
+
+var str = "Apples are round, and apples are juicy.";
+console.log("(1,2): "    + str.substr(1,2));
+console.log("(-2,2): "   + str.substr(-2,2)); //
+console.log("(1): "      + str.substr(1));
+console.log("(-20, 2): " + str.substr(-20,2));
+console.log("(20, 2): "  + str.substr(20,2));
+

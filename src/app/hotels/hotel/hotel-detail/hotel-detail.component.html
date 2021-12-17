@@ -49,3 +49,57 @@
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+ <br>
+
+<div style="margin-left: 10px">
+  Nom du produit : <input type="text" [(ngModel)]="nom"/><br><br>
+  Quantité : <input type="number" [(ngModel)]="quantite"/><br><br>
+  Prix : <input type="number" [(ngModel)]="prix"/><br><br>
+  <input type="submit" value="Calculer"  (click)="Market()"/><br><br>
+</div>
+
+<table style="border: solid 1px">
+  <tr>
+    <td style="border: solid 1px; width: 200px">Nom des produits</td>
+    <td style="border: solid 1px; width: 200px">Quantité</td>
+    <td style="border: solid 1px; width: 200px">Prix</td>
+    <td style="border: solid 1px; width: 200px">Montant</td>
+  </tr>
+  <tr *ngFor="let objet of vente">
+    <td style="border: solid 1px; width: 200px">{{objet.nom}}</td>
+    <td style="border: solid 1px; width: 200px">{{objet.quantite}}</td>
+    <td style="border: solid 1px; width: 200px">{{objet.prix}}</td>
+    <td style="border: solid 1px; width: 200px">{{objet.prix * objet.quantite}}</td>
+  </tr>
+</table>
+<br>
+<br>
+
+<div style="margin-left: 10px; margin-bottom: 100px">
+  DateDeNaissance : <input type="text" [(ngModel)]="dateDeNaisssance"/><br><br>
+  Poids : <input type="number" [(ngModel)]="poids"/><br><br>
+  NombreDeBebe : <input type="number"[(ngModel)]="nombreDeBebe"/><br><br>
+  <input type="button" value="Enregistrer" (click)="Lingettes()"/><br><br>
+</div>
+<table style="border: solid 2px">
+  <tr>
+    <td style="border:solid 2px;width: 250px"> Date de naissance</td>
+    <td style="border:solid 2px;width: 250px"> Poids</td>
+    <td style="border:solid 2px;width: 250px"> Nombre de bébé</td>
+  </tr>
+  <tr *ngFor="let objet of bebe">
+    <td style="border:solid 2px;width: 250px">{{objet.dateDeNaisssance}}</td>
+    <td style="border:solid 2px;width: 250px">{{objet.poids}}</td>
+    <td style="border:solid 2px;width: 250px">{{objet.nombreDeBebe}}</td>
+  </tr>
+</table>
+
+
+<br>
+<br>
+<br>
+
