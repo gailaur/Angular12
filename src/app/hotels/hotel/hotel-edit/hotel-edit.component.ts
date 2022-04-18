@@ -12,6 +12,9 @@ import {IHotel} from "../../shared/models/hotel";
 export class HotelEditComponent implements OnInit {
    hotelForm: FormGroup;
 
+   hotel: IHotel;
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -21,16 +24,19 @@ export class HotelEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulaire
-    console.log(this.formulaire());
+   console.log(this.formulaire());
 
     this.route.paramMap.subscribe(params=>{
       const id = +params.get('id');
-      console.log(id);
+      //console.log(id);
+      this.getSelectedHotel(id); //pour récupérer les données
+
     });
 
     //this.getSelectedHotel('id');
   }
   //ce formulaire ne depend pas du model jusque là
+  // notre createForm
   formulaire(){
     this.hotelForm = this.fb.group({
       hotelName : ['', Validators.required],
@@ -47,9 +53,33 @@ export class HotelEditComponent implements OnInit {
   getSelectedHotel(id:number):void{
     this.hotelService.getHotelById(id).subscribe(
       (hotel:IHotel)=>{
-        console.log(hotel);
+        //console.log(hotel);
+        this.displayHotel(hotel);
       }
     )
+  }
+
+  //patchValue permet d'appeler les valeurs dans un formulaire
+  //notre prepare
+
+  public displayHotel(hotel:IHotel): void{
+    this.hotel = hotel;
+
+    this.hotelForm.patchValue({
+      hotelName: this.hotel.hotelName,
+      price: this.hotel.price,
+      starRating: this.hotel.rating,
+      description: this.hotel.description
+    });
+  }
+
+  getTilte(){
+    if(this.hotel?.hotelId==0){
+      return 'créer un hotel';
+    }else{
+      return `Modifier l\'hotel ${this.hotel?.hotelName}`
+    }
+
   }
 
 }

@@ -11,16 +11,42 @@
   <hr>
   <div class="my-2">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <span>Filtre actuel:
           <b>{{hotelFilter}}</b>
         </span>
       </div>
-      <div class="col-md-8 form-group">
+      <div class="col-md-5 form-group">
         <input [(ngModel)]="hotelFilter" class="form-control" type="text">
       </div>
+
+
+
+<!--Ajout-->
+      <div class="col-md-4 form-group">
+        <!--<select   name="hotels" class="bx&#45;&#45;text-input"  [formControl]="hotels">
+          <option value=""  selected>Select profile name</option>
+          <option [value]="hotels"  *ngFor="let state of profiles">{{state.name}}</option>
+        </select>-->
+        <!-- filter byCategory -->
+        <mat-form-field class="col-md-12">
+          <mat-label><i class="mdi mdi-filter-outline"></i> Catégorie</mat-label>
+          <mat-select  class="form-control" (selectionChange)="filterByCategory()" [(ngModel)]="categoryFilter" >
+            <mat-option value="A">A</mat-option>
+            <mat-option value="B">B</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+<!--Ajout-->
+
+
+
     </div>
   </div>
+
+
+
+
   <div class="alert alert-primary" *ngIf ="!!receivedRating">
     {{receivedRating}}
   </div>
@@ -32,6 +58,7 @@
           <h5 class="card-title">{{hotel.hotelName | uppercase }}</h5>
           <p class="card-text">{{hotel.description}}</p>
           <p class="card-text">{{hotel.price | currency : 'EUR' : 'symbol' : '1.2-2' : 'fr' |replaceComma}}</p>
+          <p class="card-text">Catégorie : {{hotel.category | uppercase }}</p>
 
           <div class="d-flex justify-content-between align-items-baseline">
 

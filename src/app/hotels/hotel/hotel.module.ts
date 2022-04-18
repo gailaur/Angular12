@@ -9,6 +9,8 @@ import {HotelDetailGuard} from "../shared/guards/hotel-detail.guard";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {HotelEditComponent} from "./hotel-edit/hotel-edit.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {path: '', component:HotelListComponent},
@@ -32,6 +34,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ]
 })
 export class HotelModule { }

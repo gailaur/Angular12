@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {IHotel} from "../models/hotel";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
+import {Observable, throwError, of} from "rxjs";
 import {catchError, map, tap} from "rxjs/operators";
 
 @Injectable({
@@ -50,6 +50,7 @@ export class HotelListService {
     ];
   } */
 
+  // getAll
   public getHotels(): Observable <IHotel[]>{
     return this.http.get<IHotel[]>(this.HOTEL_API_URL).pipe(
       tap(hotels => console.log('hotels: ', hotels)),
@@ -57,12 +58,28 @@ export class HotelListService {
     );
   }
 
+  //getOne
   public getHotelById(id:number): Observable<IHotel>{
+
+    if(id==0){
+      return  of(this.getDefaultHotel());
+    }
     return this.getHotels().pipe(
       map(hotels=>hotels.find(hotel=>hotel.hotelId==id))
     );
   }
 
+  private getDefaultHotel():IHotel{
+    return {
+      hotelId: 0,
+      hotelName: null,
+      description: null,
+      price: null,
+      rating: null,
+      category: null,
+      imageUrl: null
+    }
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

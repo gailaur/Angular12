@@ -10,12 +10,15 @@ import {HotelListService} from "../../shared/services/hotel-list.service";
 export class HotelListComponent implements OnInit {
   public title='Liste des hotels';
 
-  private _hotelFilter ='mot';
+  categoryFilter: string = '';
+  private _hotelFilter ='';
   public filteredHotels: IHotel[] = [];
+
 
   public showBadge: boolean;
   public receivedRating: string;
   public hotels: IHotel []= [];
+  hotelsBase: IHotel []= [];
   public errMsg: string;
 
 
@@ -32,6 +35,7 @@ export class HotelListComponent implements OnInit {
        this.errMsg = "not exist"
      });
     this._hotelFilter ='';
+    this.categoryFilter ='';
   }
 
   public toggleIsNewBadge(): void {
@@ -48,12 +52,33 @@ export class HotelListComponent implements OnInit {
   }
 
   private filterHotels(criteria:string): IHotel[]{
-    criteria = criteria.toLocaleLowerCase();
+      criteria = criteria.toLocaleLowerCase();
     const res = this.hotels.filter(
       (hotel: IHotel) => hotel.hotelName.toLocaleLowerCase().indexOf(criteria) != -1
     );
     return res;
   }
+
+   tri(): IHotel[]{
+    const res = this.hotels.filter(
+
+      (hotel: IHotel) => hotel.category === this.categoryFilter
+    );
+    return res;
+  }
+
+  /**
+   * FilterByCategory
+   */
+  filterByCategory() {
+    this.hotels = this.hotelsBase;
+
+    if (this.categoryFilter !='') {
+      this.hotels = this.hotels.filter(el => el.category ==this.categoryFilter);
+    }
+
+  }
+
 
   public receiveRatingClick(message:string): void {
     console.log(message)
