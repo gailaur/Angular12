@@ -15,7 +15,6 @@ export class HotelEditComponent implements OnInit {
    hotel: IHotel;
 
 
-
   constructor(
     private fb: FormBuilder,
     private route : ActivatedRoute,
@@ -81,6 +80,8 @@ export class HotelEditComponent implements OnInit {
     }
 
   }
+
+
 
 }
 

@@ -8,7 +8,7 @@ import {HotelListService} from "../../shared/services/hotel-list.service";
   styleUrls: ['./hotel-list.component.scss']
 })
 export class HotelListComponent implements OnInit {
-  public title='Liste des hotels';
+  public title= 'Liste des hotels';
 
   categoryFilter: string = '';
   private _hotelFilter ='';
@@ -76,7 +76,6 @@ export class HotelListComponent implements OnInit {
     if (this.categoryFilter !='') {
       this.hotels = this.hotels.filter(el => el.category ==this.categoryFilter);
     }
-
   }
 
 

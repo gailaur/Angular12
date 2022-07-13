@@ -11,6 +11,7 @@ export class HotelListService {
 
   private readonly HOTEL_API_URL = 'api/hotels.json';
   constructor(private http: HttpClient) {}
+
 /*
   public getHotels(): IHotel[]{
 
@@ -80,6 +81,15 @@ export class HotelListService {
       imageUrl: null
     }
   }
+
+  public delete(id:number):Observable<{}>{
+    const url =`${this.HOTEL_API_URL}/${id}`;
+
+    return this.http.delete<IHotel>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -94,7 +104,5 @@ export class HotelListService {
     return throwError(
       'Something bad happened; please try again later.');
   }
-
-
 
 }
